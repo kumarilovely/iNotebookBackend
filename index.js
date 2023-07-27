@@ -14,7 +14,7 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
 
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(process.env.MONGO_URL.toString(), {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
