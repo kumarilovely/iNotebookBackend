@@ -1,6 +1,7 @@
 {
   "name": "inotebook-backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "\"inotebook - Your notebook on the cloud\",",
   "main": "index.js",
   "scripts": {
@@ -25,4 +26,5 @@
   "devDependencies": {
     "nodemon": "^3.0.0"
   }
+  
 }
