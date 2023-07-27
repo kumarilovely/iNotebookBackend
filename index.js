@@ -1,7 +1,8 @@
-const connectToMongo = require('./db.js');
-const express = require('express');
-var cors = require('cors')
-const BASE_URL = process.env.BASE_URL;
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+const mongoose = require("mongoose");
+
 
 connectToMongo();
 
@@ -15,6 +16,15 @@ app.use(express.json())
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
 
-app.listen(port, () => {
-  console.log(`iNotebook backend listening at ${BASE_URL}`);
-});
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("connected to MongoDB Atlas");
+  })
+  .then(() => {
+    app.listen(port, () => console.log(`Server is listening on port: ${port}`));
+  })
+  .catch((error) => console.log(`${error} did not connect`));
